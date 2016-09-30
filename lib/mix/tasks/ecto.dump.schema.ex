@@ -1,4 +1,4 @@
-defmodule Mix.Tasks.Ecto.Dump.Models do
+defmodule Mix.Tasks.Ecto.Dump.Schema do
   use Mix.Task
 
   @shortdoc "Dump models from repos"
