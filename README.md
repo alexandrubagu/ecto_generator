@@ -1,5 +1,5 @@
 # EctoGenerator
-Generate Ecto schemas from existing database in Phoenix - Elixir
+Generate Ecto schemas/models from existing database in Phoenix - Elixir
 
 ## Installation 
 #### Generate new Phoenix application
@@ -32,7 +32,7 @@ config :mysqlapp, Mysqlapp.Repo,
   pool_size: 10
 ```
 
-#### Now you will find `ecto.dump.schema` in mix task:
+#### Now you will find `ecto.dump.schema` in mix tasks:
 ```elixir
 [alexandrubagu@localhost devel/phoenix/] mix ecto
 Ecto v2.0.5
@@ -43,7 +43,7 @@ Available tasks:
 mix ecto.create        # Creates the repository storage
 mix ecto.drop          # Drops the repository storage
 mix ecto.dump          # Dumps the repository database structure
-mix ecto.dump.schema   # Dump models from repos
+mix ecto.dump.schema   # Dump models/schemas from repos
 mix ecto.gen.migration # Generates a new migration for the repo
 mix ecto.gen.repo      # Generates a new repository
 mix ecto.load          # Loads previously dumped database structure
