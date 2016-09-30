@@ -6,7 +6,6 @@ Generate Ecto schemas from existing database in Phoenix - Elixir
 ```bash
 [alexandrubagu@localhost devel]$ mix phoenix.new postgresapp
 ```
-
 or
 
 ```bash
@@ -14,7 +13,6 @@ or
 ```
 
 2. Add `ecto_generator` to your list of dependencies in `mix.exs`:
-
 ```elixir
 def deps do
   [{:ecto_generator, "~> 2.0.0"}]
@@ -22,7 +20,6 @@ end
 ```
 
 3. Install mix dependencies by running the following command in bash `mix deps.get`
-
 4. Edit you configuration if is necessary:
 ```elixir
 # Configure your database
@@ -36,7 +33,6 @@ config :mysqlapp, Mysqlapp.Repo,
 ```
 
 5. Now you will find `ecto.dump.schema` in mix task:
-
 ```bash
 [alexandrubagu@localhost devel/phoenix/] mix ecto
 Ecto v2.0.5
