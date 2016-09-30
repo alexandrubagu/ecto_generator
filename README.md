@@ -22,7 +22,20 @@ end
 ```
 
 3. Install mix dependencies by running the following command in bash `mix deps.get`
-4. Now you will find `ecto.dump.schema` in mix task:
+
+4. Edit you configuration if is necessary:
+```elixir
+# Configure your database
+config :mysqlapp, Mysqlapp.Repo,
+  adapter: Ecto.Adapters.MySQL,
+  username: "root",
+  password: "117950",
+  database: "hello_phoenix_dev",
+  hostname: "localhost",
+  pool_size: 10
+```
+
+5. Now you will find `ecto.dump.schema` in mix task:
 
 ```bash
 [alexandrubagu@localhost devel/phoenix/] mix ecto
@@ -42,3 +55,24 @@ mix ecto.migrate       # Runs the repository migrations
 mix ecto.migrations    # Displays the repository migration status
 mix ecto.rollback      # Rolls back the repository migrations
 ```
+
+
+### Output Sample
+1. Mysql
+[alexandrubagu@localhost devel/mysqlapp]mix ecto.dump.schema
+
+16:49:03.228 [debug] QUERY OK db=0.5ms queue=19.1ms
+SELECT table_name FROM information_schema.tables WHERE table_schema = 'hello_phoenix_dev' []
+
+16:49:03.229 [debug] QUERY OK db=0.8ms
+SELECT COLUMN_NAME, DATA_TYPE, CASE WHEN `COLUMN_KEY` = 'PRI' THEN '1' ELSE NULL END AS primary_key FROM information_schema.columns WHERE table_name= 'eos_feedback_review_titles' and table_schema='hello_phoenix_dev' []
+  priv/repo/EosFeedbackReviewTitles.ex was generated
+
+16:49:03.240 [debug] QUERY OK db=0.9ms
+SELECT COLUMN_NAME, DATA_TYPE, CASE WHEN `COLUMN_KEY` = 'PRI' THEN '1' ELSE NULL END AS primary_key FROM information_schema.columns WHERE table_name= 'schema_migrations' and table_schema='hello_phoenix_dev' []
+  priv/repo/SchemaMigrations.ex was generated
+
+16:49:03.243 [debug] QUERY OK db=0.8ms
+SELECT COLUMN_NAME, DATA_TYPE, CASE WHEN `COLUMN_KEY` = 'PRI' THEN '1' ELSE NULL END AS primary_key FROM information_schema.columns WHERE table_name= 'users' and table_schema='hello_phoenix_dev' []
+  priv/repo/Users.ex was generated
+
