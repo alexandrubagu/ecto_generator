@@ -58,8 +58,8 @@ mix ecto.rollback      # Rolls back the repository migrations
 
 
 ### Output Sample
-1. Mysql
-[alexandrubagu@localhost devel/mysqlapp]mix ecto.dump.schema
+```bash
+[alexandrubagu@localhost devel/mysqlapp ] mix ecto.dump.schema
 
 16:49:03.228 [debug] QUERY OK db=0.5ms queue=19.1ms
 SELECT table_name FROM information_schema.tables WHERE table_schema = 'hello_phoenix_dev' []
@@ -75,4 +75,4 @@ SELECT COLUMN_NAME, DATA_TYPE, CASE WHEN `COLUMN_KEY` = 'PRI' THEN '1' ELSE NULL
 16:49:03.243 [debug] QUERY OK db=0.8ms
 SELECT COLUMN_NAME, DATA_TYPE, CASE WHEN `COLUMN_KEY` = 'PRI' THEN '1' ELSE NULL END AS primary_key FROM information_schema.columns WHERE table_name= 'users' and table_schema='hello_phoenix_dev' []
   priv/repo/Users.ex was generated
-
+```
