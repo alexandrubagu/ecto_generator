@@ -26,7 +26,7 @@ end
 config :mysqlapp, Mysqlapp.Repo,
   adapter: Ecto.Adapters.MySQL,
   username: "root",
-  password: "117950",
+  password: "",
   database: "hello_phoenix_dev",
   hostname: "localhost",
   pool_size: 10
