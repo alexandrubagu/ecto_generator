@@ -3,12 +3,12 @@ Generate Ecto schemas from existing database in Phoenix - Elixir
 
 ## Installation 
 1. Generate new Phoenix application
-```bash
+```elixir
 [alexandrubagu@localhost devel]$ mix phoenix.new postgresapp
 ```
 or
 
-```bash
+```elixir
 [alexandrubagu@localhost devel]$ mix phoenix.new mysqlapp --database mysql
 ```
 
@@ -33,7 +33,7 @@ config :mysqlapp, Mysqlapp.Repo,
 ```
 
 5. Now you will find `ecto.dump.schema` in mix task:
-```bash
+```elixir
 [alexandrubagu@localhost devel/phoenix/] mix ecto
 Ecto v2.0.5
 A database wrapper and language integrated query for Elixir.
@@ -54,7 +54,7 @@ mix ecto.rollback      # Rolls back the repository migrations
 
 
 ### Output Sample
-```bash
+```elixir
 [alexandrubagu@localhost devel/mysqlapp ] mix ecto.dump.schema
 
 16:49:03.228 [debug] QUERY OK db=0.5ms queue=19.1ms
