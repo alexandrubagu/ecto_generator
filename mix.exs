@@ -3,7 +3,7 @@ defmodule EctoGenerator.Mixfile do
 
   def project do
     [app: :ecto_generator,
-     version: "5.0.0",
+     version: "6.0.0",
      elixir: "~> 1.3",
      package: package(),
      build_embedded: Mix.env == :prod,

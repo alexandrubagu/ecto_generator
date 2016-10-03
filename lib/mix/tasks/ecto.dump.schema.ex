@@ -14,8 +14,8 @@ defmodule Mix.Tasks.Ecto.Dump.Schema do
   @mysql "mysql"
   @postgres "postgres"
   @template ~s"""
-defmodule <%= app <> "." <> module_name %> do
-  use Ecto.Model
+defmodule <%= app %>.Repo.<%= module_name %> do
+  use <%= app %>.Model, :model
 
   schema "<%= table %>" do<%= for column <- columns do %>
     field :<%= String.downcase(elem(column,0)) %>, <%= elem(column, 1) %><%= if elem(column, 2) do %>, primary_key: true<% end %><% end %>
@@ -147,8 +147,9 @@ end
           columns = Enum.map description.rows, fn [column_name, column_type, is_primary] ->
             {column_name, get_type(column_type), is_primary}
           end
+          
           content = EEx.eval_string(@template, [
-            app: String.replace(to_string(repo), "Elixir.", ""),
+            app: Mix.Project.config[:app] |> String.to_string |> String.capitalize,
             table: table,
             module_name: to_camelcase(table),
             columns: columns
@@ -172,7 +173,7 @@ end
         end
       end
       content = EEx.eval_string(@template, [
-        app: String.replace(to_string(repo), "Elixir.", ""),
+        app: Mix.Project.config[:app] |> String.to_string |> String.capitalize,
         table: table,
         module_name: to_camelcase(table),
         columns: columns
