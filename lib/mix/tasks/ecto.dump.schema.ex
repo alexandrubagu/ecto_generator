@@ -187,7 +187,10 @@ end
   end
 
   defp write_model(repo, table, content) do
-    filename = source_repo_priv(repo) <> "/" <> table <> ".ex"
+    app = Mix.Project.config[:app]
+    absolute_path = Application.app_dir(app, "web")
+    filename = absolute_path <> "/" <> table <> ".ex"
+    
     File.rm filename
     {:ok, file} = File.open(filename, [:write])
     IO.binwrite file, content

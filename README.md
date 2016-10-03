@@ -15,7 +15,7 @@ or
 #### Add `ecto_generator` to your list of dependencies in `mix.exs`:
 ```elixir
 def deps do
-  [{:ecto_generator, "~> 6.0.0"}]
+  [{:ecto_generator, "~> 7.0.0"}]
 end
 ```
 
