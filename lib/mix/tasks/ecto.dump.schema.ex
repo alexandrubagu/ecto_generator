@@ -149,7 +149,7 @@ end
           end
           
           content = EEx.eval_string(@template, [
-            app: Mix.Project.config[:app] |> String.to_string |> String.capitalize,
+            app: Mix.Project.config[:app] |> Atom.to_string |> String.capitalize,
             table: table,
             module_name: to_camelcase(table),
             columns: columns
@@ -173,7 +173,7 @@ end
         end
       end
       content = EEx.eval_string(@template, [
-        app: Mix.Project.config[:app] |> String.to_string |> String.capitalize,
+        app: Mix.Project.config[:app] |> Atom.to_string |> String.capitalize,
         table: table,
         module_name: to_camelcase(table),
         columns: columns
