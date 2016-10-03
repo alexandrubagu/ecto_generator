@@ -1,28 +1,20 @@
 defmodule Mix.Tasks.Ecto.Dump.Schema do
   use Mix.Task
 
-  @shortdoc "Dump models from repos"
+  @shortdoc "Dump schemas/models from repos"
   @recursive true
 
   @moduledoc """
   Dump models from repos
 
-  The repository must be set under `:ecto_repos` in the
-  current app configuration or given via the `-r` option.
-
-  ## Examples
-
+  ## Example:
       mix ecto.dump.models
-
-  ## Command line options
-
-    * `-r`, `--repo` - the repo to create
   """
 
   @mysql "mysql"
   @postgres "postgres"
   @template ~s"""
-defmodule <%= app <> "." <> table  %> do
+defmodule <%= app <> "." <> module_name %> do
   use Ecto.Model
 
   schema "<%= table %>" do<%= for column <- columns do %>
@@ -155,10 +147,10 @@ end
           columns = Enum.map description.rows, fn [column_name, column_type, is_primary] ->
             {column_name, get_type(column_type), is_primary}
           end
-          table = to_camelcase(table)
           content = EEx.eval_string(@template, [
-            app: "name",
+            app: String.replace(to_string(repo), "Elixir.", ""),
             table: table,
+            module_name: to_camelcase(table),
             columns: columns
           ])
           write_model(repo, table, content)
@@ -179,10 +171,10 @@ end
           _ -> {column_name, get_type(column_type), true}
         end
       end
-      table = to_camelcase(table)
       content = EEx.eval_string(@template, [
         app: String.replace(to_string(repo), "Elixir.", ""),
         table: table,
+        module_name: to_camelcase(table),
         columns: columns
       ])
       write_model(repo, table, content)
