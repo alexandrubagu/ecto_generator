@@ -181,7 +181,7 @@ end
       end
       table = to_camelcase(table)
       content = EEx.eval_string(@template, [
-        app: "name",
+        app: to_string(repo) |> String.replace("Elixir.", ""),
         table: table,
         columns: columns
       ])
