@@ -14,9 +14,11 @@ defmodule Mix.Tasks.Ecto.Dump.Schema do
   @mysql "mysql"
   @postgres "postgres"
   @template ~s"""
-defmodule <%= app %>.Repo.<%= module_name %> do
-  use <%= app %>.Model, :model
+defmodule <%= app <> "." <> module_name %> do
+  use <%= app %>.Web, :model
 
+  #IF PRIMARY KEY IS NOT `id` OR YOU HAVE MULTIPLE PRIMARY KEYS -> UNCOMMENT THE FOLLOWING LINE
+  #@primary_key false
   schema "<%= table %>" do<%= for column <- columns do %>
     field :<%= String.downcase(elem(column,0)) %>, <%= elem(column, 1) %><%= if elem(column, 2) do %>, primary_key: true<% end %><% end %>
   end
@@ -187,16 +189,13 @@ end
   end
 
   defp write_model(repo, table, content) do
-    app = Mix.Project.config[:app]
-    absolute_path = Application.app_dir(app, "web")
-    filename = absolute_path <> "/" <> table <> ".ex"
-    
+    filename = "web/models/" <> table <> ".ex"
     File.rm filename
     {:ok, file} = File.open(filename, [:write])
     IO.binwrite file, content
     File.close(file)
 
-    IO.puts "\e[0;31m  #{filename} was generated"
+    IO.puts "\e[0;35m  #{filename} was generated"
   end
 
   defp to_camelcase(table_name) do
@@ -207,20 +206,19 @@ end
     case row do
       type when type in ["int", "integer", "bigint", "mediumint", "smallint", "tinyint"] ->
         ":integer"
-      type when type in ["varchar", "text", "char", "year", "mediumtext", "longtext", "tinytext", "enum", "character", "array"] ->
+      type when type in ["varchar", "text", "char", "year", "mediumtext", "longtext", "tinytext", "character"] ->
         ":string"
       type when type in ["decimal", "float", "double", "real"] ->
         ":float"
       type when type in ["boolean", "bit", "bit varying"] ->
         ":boolean"
-      type when type in ["date"] ->
-        ":date"
-      type when type in ["datetime", "timestamp"] ->
-        ":datetime"
-      type when type in ["time"] ->
-        ":time"
+      type when type in ["datetime", "timestamp", "date", "time"] ->
+        "Ecto.DateTime"
       type when type in ["blob"] ->
-        ":binary"
+        ":binary"     
+      type -> 
+        IO.puts "\e[0;31m  #{type} is not supported ... Fallback to :string"
+        ":string" 
     end
   end
 end
