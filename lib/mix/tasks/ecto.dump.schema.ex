@@ -156,7 +156,7 @@ end
             module_name: to_camelcase(table),
             columns: columns
           ])
-          write_model(repo, table, content)
+          write_model(table, content)
         end
     end
   end
@@ -180,7 +180,7 @@ end
         module_name: to_camelcase(table),
         columns: columns
       ])
-      write_model(repo, table, content)
+      write_model(table, content)
     end
   end
 
@@ -188,7 +188,7 @@ end
     IO.puts "#{driver} is not yet implemented inspect #{repo}"
   end
 
-  defp write_model(repo, table, content) do
+  defp write_model(table, content) do
     filename = "web/models/" <> table <> ".ex"
     File.rm filename
     {:ok, file} = File.open(filename, [:write])
