@@ -56,19 +56,50 @@ mix ecto.rollback      # Rolls back the repository migrations
 #### Output Sample
 ```elixir
 [alexandrubagu@localhost devel/mysqlapp ] mix ecto.dump.schema
+13:15:04.270 [debug] QUERY OK db=0.8ms decode=0.1ms queue=15.2ms
+SELECT table_name FROM information_schema.tables WHERE table_schema = 'sakila' []
 
-16:49:03.228 [debug] QUERY OK db=0.5ms queue=19.1ms
-SELECT table_name FROM information_schema.tables WHERE table_schema = 'hello_phoenix_dev' []
+13:15:04.272 [debug] QUERY OK db=0.9ms
+SELECT COLUMN_NAME, DATA_TYPE, CASE WHEN `COLUMN_KEY` = 'PRI' THEN '1' ELSE NULL END AS primary_key FROM information_schema.columns WHERE table_name= 'actor' and table_schema='sakila' []
+  web/models/actor.ex was generated
 
-16:49:03.229 [debug] QUERY OK db=0.8ms
-SELECT COLUMN_NAME, DATA_TYPE, CASE WHEN `COLUMN_KEY` = 'PRI' THEN '1' ELSE NULL END AS primary_key FROM information_schema.columns WHERE table_name= 'eos_feedback_review_titles' and table_schema='hello_phoenix_dev' []
-  priv/repo/EosFeedbackReviewTitles.ex was generated
+13:15:04.289 [debug] QUERY OK db=1.6ms decode=0.1ms
+SELECT COLUMN_NAME, DATA_TYPE, CASE WHEN `COLUMN_KEY` = 'PRI' THEN '1' ELSE NULL END AS primary_key FROM information_schema.columns WHERE table_name= 'actor_info' and table_schema='sakila' []
+  web/models/actor_info.ex was generated
 
-16:49:03.240 [debug] QUERY OK db=0.9ms
-SELECT COLUMN_NAME, DATA_TYPE, CASE WHEN `COLUMN_KEY` = 'PRI' THEN '1' ELSE NULL END AS primary_key FROM information_schema.columns WHERE table_name= 'schema_migrations' and table_schema='hello_phoenix_dev' []
-  priv/repo/SchemaMigrations.ex was generated
+13:15:04.293 [debug] QUERY OK db=1.2ms decode=0.1ms
+SELECT COLUMN_NAME, DATA_TYPE, CASE WHEN `COLUMN_KEY` = 'PRI' THEN '1' ELSE NULL END AS primary_key FROM information_schema.columns WHERE table_name= 'address' and table_schema='sakila' []
+  web/models/address.ex was generated
 
-16:49:03.243 [debug] QUERY OK db=0.8ms
-SELECT COLUMN_NAME, DATA_TYPE, CASE WHEN `COLUMN_KEY` = 'PRI' THEN '1' ELSE NULL END AS primary_key FROM information_schema.columns WHERE table_name= 'users' and table_schema='hello_phoenix_dev' []
-  priv/repo/Users.ex was generated
+13:15:04.298 [debug] QUERY OK db=0.8ms
+SELECT COLUMN_NAME, DATA_TYPE, CASE WHEN `COLUMN_KEY` = 'PRI' THEN '1' ELSE NULL END AS primary_key FROM information_schema.columns WHERE table_name= 'category' and table_schema='sakila' []
+  web/models/category.ex was generated
+
+13:15:04.302 [debug] QUERY OK db=0.8ms
+SELECT COLUMN_NAME, DATA_TYPE, CASE WHEN `COLUMN_KEY` = 'PRI' THEN '1' ELSE NULL END AS primary_key FROM information_schema.columns WHERE table_name= 'city' and table_schema='sakila' []
+  web/models/city.ex was generated
+
+13:15:04.306 [debug] QUERY OK db=0.7ms
+SELECT COLUMN_NAME, DATA_TYPE, CASE WHEN `COLUMN_KEY` = 'PRI' THEN '1' ELSE NULL END AS primary_key FROM information_schema.columns WHERE table_name= 'country' and table_schema='sakila' []
+  web/models/country.ex was generated
+
+13:15:04.310 [debug] QUERY OK db=1.0ms
+SELECT COLUMN_NAME, DATA_TYPE, CASE WHEN `COLUMN_KEY` = 'PRI' THEN '1' ELSE NULL END AS primary_key FROM information_schema.columns WHERE table_name= 'customer' and table_schema='sakila' []
+  web/models/customer.ex was generated
+  enum is not supported ... Fallback to :string
+  set is not supported ... Fallback to :string
+
+13:15:04.314 [debug] QUERY OK db=0.9ms
+SELECT COLUMN_NAME, DATA_TYPE, CASE WHEN `COLUMN_KEY` = 'PRI' THEN '1' ELSE NULL END AS primary_key FROM information_schema.columns WHERE table_name= 'film' and table_schema='sakila' []
+  web/models/film.ex was generated
+
+13:15:04.319 [debug] QUERY OK db=1.4ms
+SELECT COLUMN_NAME, DATA_TYPE, CASE WHEN `COLUMN_KEY` = 'PRI' THEN '1' ELSE NULL END AS primary_key FROM information_schema.columns WHERE table_name= 'film_actor' and table_schema='sakila' []
+  web/models/film_actor.ex was generated
+
+13:15:04.323 [debug] QUERY OK db=0.9ms
+SELECT COLUMN_NAME, DATA_TYPE, CASE WHEN `COLUMN_KEY` = 'PRI' THEN '1' ELSE NULL END AS primary_key FROM information_schema.columns WHERE table_name= 'film_category' and table_schema='sakila' []
+  web/models/film_category.ex was generated
+  enum is not supported ... Fallback to :string
+
 ```
