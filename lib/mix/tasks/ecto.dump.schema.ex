@@ -15,7 +15,7 @@ defmodule Mix.Tasks.Ecto.Dump.Schema do
   @postgres "postgres"
   @template ~s"""
 defmodule <%= app <> "." <> module_name %> do
-  use <%= app %>.Web, :model
+  use <%= app %>Web, :model
 
   #IF PRIMARY KEY IS NOT `id` OR YOU HAVE MULTIPLE PRIMARY KEYS -> UNCOMMENT THE FOLLOWING LINE
   #@primary_key false
@@ -189,7 +189,8 @@ end
   end
 
   defp write_model(table, content) do
-    filename = "web/models/" <> table <> ".ex"
+    app_name = Mix.Project.config[:app] |> Atom.to_string
+    filename = "lib/" <> app_name <> "_web/models/" <> table <> ".ex"
     File.rm filename
     {:ok, file} = File.open(filename, [:write])
     IO.binwrite file, content
